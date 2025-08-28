@@ -1,5 +1,6 @@
 :root {
   --bg: #0b0d10;
+  --error: hsl(0, 86%, 49%);
   --surface: #13171c;
   --text: #e6edf3;
   --muted: #a9b1ba;
