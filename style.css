@@ -5,12 +5,14 @@
   --muted: #a9b1ba;
   --brand: #5b9cff;
   --brand-2: #8b5bff;
+  --bg-gradient: linear-gradient(120deg, #9722d7, #5b9cff, #8b5bff);
   --card: #151a21;
   --ring: rgba(91, 156, 255, 0.18);
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   --radius: 16px;
   --maxw: 1100px;
   --header-h: 72px; /* default until JS measures */
+  --error: hsla(0, 91%, 52%, 0.75);
 }
 
 * {
@@ -46,6 +48,7 @@ a {
 img {
   max-width: 100%;
   display: block;
+  background: var(--bg-gradient);
 }
 .container {
   width: 100%;
@@ -134,6 +137,23 @@ header.scrolled {
   border: 0;
   cursor: pointer;
 }
+
+.btn-primary:hover {
+  background: var(--brand-2);
+}
+
+.btn-secondary {
+  background: linear-gradient(
+    135deg,
+    rgba(91, 156, 255, 0.08),
+    rgba(139, 91, 255, 0.08)
+  );
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 0;
+  cursor: pointer;
+}
 .hamburger {
   display: none;
   background: transparent;
@@ -143,7 +163,11 @@ header.scrolled {
   border-radius: 8px;
 }
 
-.mobile-menu{
+.hamburger i {
+  color: white;
+}
+
+.mobile-menu {
   display: none;
 }
 
@@ -257,11 +281,10 @@ header.scrolled {
 .avatar {
   width: 100%;
   aspect-ratio: 1/1;
-  border-radius: 18px;
+  border-radius: 5%;
   overflow: hidden;
   display: grid;
   place-items: center;
-  background: linear-gradient(135deg, var(--brand), var(--brand-2));
   box-shadow: var(--shadow);
 }
 .chip-row {
@@ -313,6 +336,11 @@ header.scrolled {
     rgba(91, 156, 255, 0.08),
     rgba(139, 91, 255, 0.08)
   );
+}
+.project-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
 }
 .project-body {
   padding: 16px;

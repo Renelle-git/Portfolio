@@ -6,7 +6,7 @@
     <title>Renelle Quiñones — Computer Science Graduate</title>
     <meta
       name="description"
-      content="Responsive portfolio website built with HTML, CSS, and JavaScript."
+      content="Hi, looking for backend developer?"
     />
 
     <link rel="stylesheet" href="style.css" />
@@ -56,6 +56,7 @@
     </header>
 
     <main id="home">
+      <!-- hero -->
       <section class="hero">
         <div class="container hero-grid">
           <div>
@@ -154,13 +155,13 @@
       <section class="section" id="about" aria-labelledby="about-title">
         <div class="container about-grid">
           <div class="avatar reveal" data-delay="0.18s" aria-hidden="true">
-            <i class="fa-solid fa-user-circle fa-6x"></i>
+            <img src="images/profile/me.png" alt="">
           </div>
 
           <div>
             <h2 id="about-title" class="reveal" data-delay="0.22s">About Me</h2>
             <p class="lead reveal" data-delay="0.26s">
-              I'm a Aspiring backend-focused developer who enjoys turning
+              I'm a backend developer who enjoys turning
               complex business logic into elegant, maintainable code. I care
               about clean architecture, observability, and shipping features
               that matter.
@@ -186,6 +187,7 @@
         </div>
       </section>
 
+      <!-- project -->
       <section class="section" id="projects" aria-labelledby="projects-title">
         <div class="container">
           <h2 id="projects-title" class="reveal" data-delay="0.12s">
@@ -197,7 +199,9 @@
 
           <div class="grid projects">
             <article class="project-card reveal" aria-labelledby="p1-title">
-              <div class="project-media" aria-hidden="true"></div>
+              <div class="project-media" aria-hidden="true">
+                <img src="images/project/doc_tracking.png" alt="">
+              </div>
               <div class="project-body">
                 <h3 class="project-title" id="p1-title">
                   Document Tracking System
@@ -208,53 +212,25 @@
                 </p>
               </div>
               <div class="project-actions" style="padding: 14px">
-                <a class="btn-primary" href="#">Live Demo</a>
-                <a class="btn" href="#">GitHub</a>
+                <a class="btn-primary" href="https://dtfrs.ccs-sluc.com/" target="_blank">Live Demo</a>
+                <!-- <a class="btn" href="#">GitHub</a> -->
               </div>
             </article>
 
             <article class="project-card reveal" aria-labelledby="p2-title">
               <div class="project-media" aria-hidden="true"></div>
               <div class="project-body">
-                <h3 class="project-title" id="p2-title">Inventory System</h3>
+                <h3 class="project-title" id="p2-title">Lazy-Job</h3>
                 <p class="project-desc">
-                  Laravel + React + Inertia with product/stock flows and REST
-                  API.
+                  Lazy-Job is a modern job board web application built with Laravel. 
                 </p>
               </div>
               <div class="project-actions" style="padding: 14px">
-                <a class="btn-primary" href="#">Case Study</a>
-                <a class="btn" href="#">GitHub</a>
+                <a class="btn-primary" href="https://github.com/Renelle-git/Lazy-Job" target="_blank">GitHub</a>
+                <a class="btn-secondary" href="https://renelle-git.github.io/Lazy-Job/" target="_blank">Case Study</a>
               </div>
             </article>
 
-            <article class="project-card reveal" aria-labelledby="p3-title">
-              <div class="project-media" aria-hidden="true"></div>
-              <div class="project-body">
-                <h3 class="project-title" id="p3-title">Training Portal</h3>
-                <p class="project-desc">
-                  Trainee onboarding, certifications and billing automation.
-                </p>
-              </div>
-              <div class="project-actions" style="padding: 14px">
-                <a class="btn" href="#">Overview</a>
-                <a class="btn" href="#">GitHub</a>
-              </div>
-            </article>
-
-            <article class="project-card reveal" aria-labelledby="p4-title">
-              <div class="project-media" aria-hidden="true"></div>
-              <div class="project-body">
-                <h3 class="project-title" id="p4-title">Task Manager</h3>
-                <p class="project-desc">
-                  Minimal task app with tags, reminders, and notifications.
-                </p>
-              </div>
-              <div class="project-actions" style="padding: 14px">
-                <a class="btn" href="#">Live Demo</a>
-                <a class="btn" href="#">GitHub</a>
-              </div>
-            </article>
           </div>
         </div>
       </section>
@@ -268,6 +244,12 @@
               reply within 24 hours.
             </p>
             <form id="contactForm" novalidate>
+               <p
+                id="formMsg"
+                role="status"
+                style="margin-top: 10px; color: var(--error)"
+              ></p>
+
               <label class="sr-only" for="name">Name</label>
               <input
                 class="input"
@@ -297,22 +279,16 @@
               ></textarea>
               <div style="height: 14px"></div>
               <button class="btn-primary" type="submit">Send Message</button>
-              <p
-                id="formMsg"
-                role="status"
-                style="margin-top: 10px; color: var(--muted)"
-              ></p>
+             
             </form>
           </div>
 
           <div class="card reveal" data-delay="0.16s">
             <h3 style="margin-top: 0">What I Work With</h3>
             <ul style="margin: 8px 0 0 18px; color: var(--muted)">
-              <li>Laravel 12, PHP 8.3, Pest</li>
-              <li>Node.js, Express, TypeScript</li>
-              <li>MySQL, Redis, Prisma/Eloquent</li>
-              <li>REST/GraphQL APIs, Webhooks</li>
-              <li>Docker, CI/CD (GitHub Actions)</li>
+              <li>Laravel 12, PHP 8.3, Blade/Breeze</li>
+              <li>MySQL, SQlite, Eloquent</li>
+              <li>REST APIs, Boostrap 5</li>
             </ul>
             <div style="height: 12px"></div>
             <h3>Availability</h3>
@@ -344,21 +320,21 @@
         </div>
         <div class="socials" aria-label="Social links">
           <a
-            href="https://github.com/"
+            href="https://github.com/Renelle-git"
             target="_blank"
             rel="noopener"
             aria-label="GitHub"
             ><i class="fa-brands fa-github"></i
           ></a>
           <a
-            href="https://www.linkedin.com/"
+            href="www.linkedin.com/in/renelle-quiñones-7a53b2363"
             target="_blank"
             rel="noopener"
             aria-label="LinkedIn"
             ><i class="fa-brands fa-linkedin"></i
           ></a>
-          <a href="https://x.com/" target="_blank" rel="noopener" aria-label="X"
-            ><i class="fa-brands fa-x-twitter"></i
+          <a href="https://www.facebook.com/share/1QWYMFvCH9/" target="_blank" rel="noopener" aria-label="X"
+            ><i class="fa-brands fa-facebook"></i
           ></a>
         </div>
 
