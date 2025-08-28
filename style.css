@@ -413,7 +413,7 @@ section {
   position: relative;
 }
 
-.project-media img{
+.project-media .iproject-image{
   height: 100%;
   object-fit: fill;
 }
