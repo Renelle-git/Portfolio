@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Renelle Quiñones — Computer Science Graduate</title>
+    <meta
+      name="description"
+      content="Responsive portfolio website built with HTML, CSS, and JavaScript."
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container nav" role="navigation" aria-label="Main Navigation">
+        <a class="brand" href="#home" aria-label="Homepage">
+          <span class="logo" aria-hidden="true">RQ</span>
+          <span>Portfolio</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+          <button class="btn-primary" id="downloadCV">Download CV</button>
+        </nav>
+
+        <button
+          class="hamburger"
+          id="hamburger"
+          aria-label="Open menu"
+          aria-controls="mobileMenu"
+          aria-expanded="false"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+      <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true">
+        <a href="#about" onclick="closeMenu()">About</a>
+        <a href="#projects" onclick="closeMenu()">Projects</a>
+        <a href="#contact" onclick="closeMenu()">Contact</a>
+        <button
+          class="btn-primary"
+          style="margin-top: 8px"
+          onclick="closeMenu(); document.getElementById('downloadCV').click()"
+        >
+          Download CV
+        </button>
+      </div>
+    </header>
+
+    <main id="home">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="eyebrow reveal" data-delay="0s">
+              Aspiring Backend Developer
+            </div>
+            <h1 class="title reveal" data-delay="0.04s">
+              Hi, I'm
+              <span
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    var(--brand),
+                    var(--brand-2)
+                  );
+                  -webkit-background-clip: text;
+                  background-clip: text;
+                  color: transparent;
+                "
+                >Renelle Quiñones</span
+              >.<br />I build reliable APIs & systems.
+            </h1>
+            <p class="subtitle reveal" data-delay="0.08s">
+              I'm novice in crafting secure REST APIs, database design, and
+              scalable services — with a focus on performance.
+            </p>
+            <div
+              class="hero-cta reveal"
+              data-delay="0.12s"
+              style="margin-top: 18px; display: flex; gap: 12px"
+            >
+              <a class="btn-primary" href="#projects">View Projects</a>
+              <!-- <a class="btn" href="#contact">Contact Me</a> -->
+            </div>
+          </div>
+
+          <div>
+            <div class="hero-card reveal" data-delay="0.14s">
+              <div style="display: flex; gap: 12px; align-items: center">
+                <div
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    display: grid;
+                    place-items: center;
+                    border-radius: 10px;
+                    background: rgba(255, 255, 255, 0.03);
+                  "
+                >
+                  <i class="fa-solid fa-plus"></i>
+                </div>
+
+                <div>
+                  <strong>Less than 1 year of experience</strong>
+                  <div style="color: var(--muted)">
+                    Building backend services & website
+                  </div>
+                </div>
+              </div>
+              <hr
+                style="
+                  border: 0;
+                  border-top: 1px solid rgba(255, 255, 255, 0.03);
+                  margin: 14px 0;
+                "
+              />
+              <div style="display: flex; gap: 13px; align-items: center">
+                <div
+                  style="
+                    width: 45px;
+                    height: 40px;
+                    display: grid;
+                    place-items: center;
+                    border-radius: 10px;
+                    background: rgba(255, 255, 255, 0.03);
+                  "
+                >
+                  <i class="fa-solid fa-layer-group"></i>
+                </div>
+
+                <div>
+                  <strong>Stack</strong>
+                  <div style="color: var(--muted)">
+                    PHP • JavaScript • MySQL • HTML
+                  </div>
+                  <div style="color: var(--muted)">
+                    CSS • Bootstrap • Laravel • Blade
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about" aria-labelledby="about-title">
+        <div class="container about-grid">
+          <div class="avatar reveal" data-delay="0.18s" aria-hidden="true">
+            <i class="fa-solid fa-user-circle fa-6x"></i>
+          </div>
+
+          <div>
+            <h2 id="about-title" class="reveal" data-delay="0.22s">About Me</h2>
+            <p class="lead reveal" data-delay="0.26s">
+              I'm a Aspiring backend-focused developer who enjoys turning
+              complex business logic into elegant, maintainable code. I care
+              about clean architecture, observability, and shipping features
+              that matter.
+            </p>
+            <div
+              class="chip-row reveal"
+              data-delay="0.30s"
+              role="list"
+              aria-label="Skills"
+            >
+              <span class="chip" role="listitem">Skills dito</span>
+              <!-- <span class="chip" role="listitem"
+                >PHP (Laravel 12 | Vanilla)</span
+              >
+              <span class="chip" role="listitem">MySQL</span>
+              <span class="chip" role="listitem">HTML</span>
+              <span class="chip" role="listitem">CSS</span>
+              <span class="chip" role="listitem">Boostrap</span>
+              <span class="chip" role="listitem">JavaScript</span>
+              <span class="chip" role="listitem">REST API</span> -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="projects" aria-labelledby="projects-title">
+        <div class="container">
+          <h2 id="projects-title" class="reveal" data-delay="0.12s">
+            Projects
+          </h2>
+          <p class="lead reveal" data-delay="0.16s">
+            A few things I've built and shipped recently.
+          </p>
+
+          <div class="grid projects">
+            <article class="project-card reveal" aria-labelledby="p1-title">
+              <div class="project-media" aria-hidden="true"></div>
+              <div class="project-body">
+                <h3 class="project-title" id="p1-title">
+                  Document Tracking System
+                </h3>
+                <p class="project-desc">
+                  Routing & timeline for documents across offices. Role-based
+                  access, audit logs, notifications.
+                </p>
+              </div>
+              <div class="project-actions" style="padding: 14px">
+                <a class="btn-primary" href="#">Live Demo</a>
+                <a class="btn" href="#">GitHub</a>
+              </div>
+            </article>
+
+            <article class="project-card reveal" aria-labelledby="p2-title">
+              <div class="project-media" aria-hidden="true"></div>
+              <div class="project-body">
+                <h3 class="project-title" id="p2-title">Inventory System</h3>
+                <p class="project-desc">
+                  Laravel + React + Inertia with product/stock flows and REST
+                  API.
+                </p>
+              </div>
+              <div class="project-actions" style="padding: 14px">
+                <a class="btn-primary" href="#">Case Study</a>
+                <a class="btn" href="#">GitHub</a>
+              </div>
+            </article>
+
+            <article class="project-card reveal" aria-labelledby="p3-title">
+              <div class="project-media" aria-hidden="true"></div>
+              <div class="project-body">
+                <h3 class="project-title" id="p3-title">Training Portal</h3>
+                <p class="project-desc">
+                  Trainee onboarding, certifications and billing automation.
+                </p>
+              </div>
+              <div class="project-actions" style="padding: 14px">
+                <a class="btn" href="#">Overview</a>
+                <a class="btn" href="#">GitHub</a>
+              </div>
+            </article>
+
+            <article class="project-card reveal" aria-labelledby="p4-title">
+              <div class="project-media" aria-hidden="true"></div>
+              <div class="project-body">
+                <h3 class="project-title" id="p4-title">Task Manager</h3>
+                <p class="project-desc">
+                  Minimal task app with tags, reminders, and notifications.
+                </p>
+              </div>
+              <div class="project-actions" style="padding: 14px">
+                <a class="btn" href="#">Live Demo</a>
+                <a class="btn" href="#">GitHub</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contact" aria-labelledby="contact-title">
+        <div class="container contact-grid">
+          <div class="card reveal" data-delay="0.12s">
+            <h2 id="contact-title">Contact Me</h2>
+            <p class="lead">
+              Have a question or a project in mind? Send a message — I usually
+              reply within 24 hours.
+            </p>
+            <form id="contactForm" novalidate>
+              <label class="sr-only" for="name">Name</label>
+              <input
+                class="input"
+                id="name"
+                name="name"
+                placeholder="Your name"
+                required
+              />
+              <div style="height: 10px"></div>
+              <label class="sr-only" for="email">Email</label>
+              <input
+                class="input"
+                id="email"
+                type="email"
+                name="email"
+                placeholder="you@example.com"
+                required
+              />
+              <div style="height: 10px"></div>
+              <label class="sr-only" for="message">Message</label>
+              <textarea
+                class="input"
+                id="message"
+                name="message"
+                placeholder="Tell me about your project..."
+                required
+              ></textarea>
+              <div style="height: 14px"></div>
+              <button class="btn-primary" type="submit">Send Message</button>
+              <p
+                id="formMsg"
+                role="status"
+                style="margin-top: 10px; color: var(--muted)"
+              ></p>
+            </form>
+          </div>
+
+          <div class="card reveal" data-delay="0.16s">
+            <h3 style="margin-top: 0">What I Work With</h3>
+            <ul style="margin: 8px 0 0 18px; color: var(--muted)">
+              <li>Laravel 12, PHP 8.3, Pest</li>
+              <li>Node.js, Express, TypeScript</li>
+              <li>MySQL, Redis, Prisma/Eloquent</li>
+              <li>REST/GraphQL APIs, Webhooks</li>
+              <li>Docker, CI/CD (GitHub Actions)</li>
+            </ul>
+            <div style="height: 12px"></div>
+            <h3>Availability</h3>
+            <p style="margin: 6px 0 0; color: var(--muted)">
+              Open to freelance and full-time roles.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div
+        class="container"
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+          flex-wrap: wrap;
+        "
+      >
+        <div>
+          <div>
+            &copy; <span id="year"></span> Renelle Quiñones. All rights
+            reserved.
+          </div>
+          <div style="font-size: 13px">Built with HTML • CSS • JavaScript</div>
+        </div>
+        <div class="socials" aria-label="Social links">
+          <a
+            href="https://github.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            ><i class="fa-brands fa-github"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="LinkedIn"
+            ><i class="fa-brands fa-linkedin"></i
+          ></a>
+          <a href="https://x.com/" target="_blank" rel="noopener" aria-label="X"
+            ><i class="fa-brands fa-x-twitter"></i
+          ></a>
+        </div>
+
+        <div>
+            Contact Number:
+            <span> +63 966-279-8107</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
