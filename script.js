@@ -145,4 +145,26 @@ document.addEventListener("DOMContentLoaded", function () {
   // dynamic year
   const y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();
+
+
+  // Get button
+const backToTop = document.getElementById("backToTop");
+
+// Show button when scrolling down
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
+});
+
+// Scroll smoothly to top when clicked
+backToTop.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
 });
