@@ -1,9 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Animate on scroll (AOS)
+  // Initialize AOS
   if (typeof AOS !== "undefined") {
-    AOS.init({ duration: 1200 });
+    AOS.init({
+      duration: 1200,
+      once: true,
+      offset: 100,
+    });
   }
-
 
   const header = document.querySelector("header");
   const hamburger = document.getElementById("hamburger");
@@ -11,78 +14,108 @@ document.addEventListener("DOMContentLoaded", function () {
   const backToTop = document.getElementById("backToTop");
 
   /** ---------------------------
-   * Header height and sticky padding
+   * Mobile Menu Toggle
    * -------------------------- */
-  // function setHeaderHeight() {
-  //   if (!header) return;
-  //   const h = Math.round(header.getBoundingClientRect().height);
-  //   document.documentElement.style.setProperty("--header-h", h + "px");
-  //   document.body.style.paddingTop = h + "px";
-  // }
-  // setHeaderHeight();
-  // window.addEventListener("resize", setHeaderHeight);
+  if (hamburger && mobileMenu) {
+    // Toggle menu
+    hamburger.addEventListener("click", (e) => {
+      e.stopPropagation();
+      mobileMenu.classList.toggle("hidden");
+
+      // Update hamburger icon
+      const icon = hamburger.querySelector("i");
+      if (mobileMenu.classList.contains("hidden")) {
+        icon.className = "fa-solid fa-bars";
+      } else {
+        icon.className = "fa-solid fa-times";
+      }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+      if (
+        !mobileMenu.classList.contains("hidden") &&
+        !mobileMenu.contains(e.target) &&
+        !hamburger.contains(e.target)
+      ) {
+        mobileMenu.classList.add("hidden");
+        hamburger.querySelector("i").className = "fa-solid fa-bars";
+      }
+    });
+
+    // Close menu when clicking on navigation links
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        hamburger.querySelector("i").className = "fa-solid fa-bars";
+      });
+    });
+  }
 
   /** ---------------------------
-   * Mobile Menu
+   * Smooth Scrolling for anchor links
    * -------------------------- */
-if (hamburger && mobileMenu) {
-  // Toggle menu
-  hamburger.addEventListener("click", (e) => {
-    e.stopPropagation();
-    mobileMenu.classList.toggle("hidden");
-  });
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) {
+        const headerHeight = header ? header.offsetHeight : 0;
+        const targetPosition = target.offsetTop - headerHeight - 20;
 
-  // Close menu if clicking outside
-  document.addEventListener("click", (e) => {
-    if (
-      !mobileMenu.classList.contains("hidden") &&
-      !mobileMenu.contains(e.target) &&
-      !hamburger.contains(e.target)
-    ) {
-      mobileMenu.classList.add("hidden");
-    }
-  });
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        });
 
-  // Close after clicking a link
-  mobileMenu.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      mobileMenu.classList.add("hidden");
+        // Close mobile menu if open
+        if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
+          mobileMenu.classList.add("hidden");
+          hamburger.querySelector("i").className = "fa-solid fa-bars";
+        }
+      }
     });
   });
-}
-
-
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    const target = document.querySelector(this.getAttribute("href"));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: "smooth" });
-
-      // Close mobile menu after clicking
-      if (!mobileMenu.classList.contains("hidden")) {
-        mobileMenu.classList.add("hidden");
-      }
-    }
-  });
-});
 
   /** ---------------------------
-   * Scroll: shrink header + show Back-to-Top
+   * Scroll Effects
    * -------------------------- */
+  let ticking = false;
+
+  function updateOnScroll() {
+    const scrollY = window.scrollY;
+
+    // Header shadow on scroll
+    if (header) {
+      header.classList.toggle("shadow-md", scrollY > 20);
+    }
+
+    // Back to top button
+    if (backToTop) {
+      if (scrollY > 300) {
+        backToTop.classList.remove("hidden");
+      } else {
+        backToTop.classList.add("hidden");
+      }
+    }
+
+    ticking = false;
+  }
+
   window.addEventListener(
     "scroll",
     () => {
-      if (header) {
-        header.classList.toggle("scrolled", window.scrollY > 28);
-      }
-      if (backToTop) {
-        backToTop.style.display = window.scrollY > 300 ? "block" : "none";
+      if (!ticking) {
+        requestAnimationFrame(updateOnScroll);
+        ticking = true;
       }
     },
     { passive: true }
   );
 
+  /** ---------------------------
+   * Back to Top Button
+   * -------------------------- */
   if (backToTop) {
     backToTop.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -90,97 +123,138 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   }
 
   /** ---------------------------
-   * Reveal (IntersectionObserver fallback)
-   * -------------------------- */
-  const reveals = document.querySelectorAll(".reveal");
-  const projectCards = document.querySelectorAll(".projects .project-card");
-  projectCards.forEach((el, i) => (el.dataset.delay = i * 0.06 + "s"));
-
-  if ("IntersectionObserver" in window) {
-    const obs = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const el = entry.target;
-            el.style.transitionDelay = el.dataset.delay || "0s";
-            el.classList.add("active");
-            observer.unobserve(el);
-          }
-        });
-      },
-      { threshold: 0.12 }
-    );
-    reveals.forEach((r) => obs.observe(r));
-  } else {
-    reveals.forEach((r) => r.classList.add("active"));
-  }
-
-  /** ---------------------------
-   * Scrollspy
+   * Active Navigation (Scrollspy)
    * -------------------------- */
   const sections = document.querySelectorAll("main section[id]");
-  const navLinks = document.querySelectorAll("header nav a, #mobileMenu a");
-  if ("IntersectionObserver" in window) {
-    const spy = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.id;
-            navLinks.forEach((a) =>
-              a.classList.toggle("active", a.getAttribute("href") === "#" + id)
-            );
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-    sections.forEach((s) => spy.observe(s));
+  const navLinks = document.querySelectorAll(
+    "header nav a[href^='#'], #mobileMenu a[href^='#']"
+  );
+
+  if ("IntersectionObserver" in window && sections.length > 0) {
+    const observerOptions = {
+      threshold: 0.3,
+      rootMargin: "-20% 0px -70% 0px",
+    };
+
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach((link) => {
+            const isActive = link.getAttribute("href") === "#" + id;
+            link.classList.toggle("text-blue-500", isActive);
+            link.classList.toggle("font-semibold", isActive);
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((section) => spy.observe(section));
   }
 
   /** ---------------------------
-   * Download CV (placeholder)
+   * Download CV Buttons
    * -------------------------- */
-  const downloadBtn = document.getElementById("downloadCV");
-  if (downloadBtn) {
-    downloadBtn.addEventListener("click", () => {
-      alert("Under Maintenance 😁");
+  const downloadBtns = document.querySelectorAll(
+    "#downloadCV, #downloadCVMobile"
+  );
+  downloadBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      alert("CV Download - Under Maintenance 😁");
     });
-  }
+  });
 
   /** ---------------------------
-   * Contact Form
+   * Contact Form Handler
    * -------------------------- */
   const form = document.getElementById("contactForm");
   const formMsg = document.getElementById("formMsg");
-  if (form) {
+
+  if (form && formMsg) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
       const message = document.getElementById("message").value.trim();
 
+      // Clear previous messages
+      formMsg.textContent = "";
+      formMsg.className = "text-sm";
+
+      // Validation
       if (!name || !email || !message) {
         formMsg.textContent = "Please fill out all fields.";
-        return;
-      }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        formMsg.textContent = "Please enter a valid email.";
+        formMsg.className = "text-red-500 text-sm";
         return;
       }
 
-      const subject = encodeURIComponent("Portfolio Inquiry from " + name);
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        formMsg.textContent = "Please enter a valid email address.";
+        formMsg.className = "text-red-500 text-sm";
+        return;
+      }
+
+      // Create mailto link
+      const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
       const body = encodeURIComponent(
-        message + "\n\n— " + name + " (" + email + ")"
+        `${message}\n\n—\nFrom: ${name}\nEmail: ${email}`
       );
-      window.location.href = `mailto:renellequinones7@gmail.com?subject=${subject}&body=${body}`;
-      formMsg.textContent = "Opening your email client...";
-      form.reset();
+
+      try {
+        window.location.href = `mailto:renellequinones7@gmail.com?subject=${subject}&body=${body}`;
+        formMsg.textContent = "Opening your email client...";
+        formMsg.className = "text-green-600 text-sm";
+
+        // Reset form after successful submission
+        setTimeout(() => {
+          form.reset();
+          formMsg.textContent = "";
+        }, 2000);
+      } catch (error) {
+        formMsg.textContent = "Error opening email client. Please try again.";
+        formMsg.className = "text-red-500 text-sm";
+      }
+    });
+
+    // Real-time validation feedback
+    const inputs = form.querySelectorAll("input, textarea");
+    inputs.forEach((input) => {
+      input.addEventListener("blur", () => {
+        if (input.value.trim() === "") {
+          input.classList.add("border-red-300");
+        } else {
+          input.classList.remove("border-red-300");
+        }
+      });
+
+      input.addEventListener("input", () => {
+        input.classList.remove("border-red-300");
+        if (formMsg.textContent && input.value.trim() !== "") {
+          formMsg.textContent = "";
+        }
+      });
     });
   }
 
   /** ---------------------------
-   * Dynamic Year
+   * Dynamic Year in Footer
    * -------------------------- */
-  const y = document.getElementById("year");
-  if (y) y.textContent = new Date().getFullYear();
+  const yearElement = document.getElementById("year");
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
+
+  /** ---------------------------
+   * Handle window resize for mobile menu
+   * -------------------------- */
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 768) {
+      // md breakpoint
+      if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
+        mobileMenu.classList.add("hidden");
+        hamburger.querySelector("i").className = "fa-solid fa-bars";
+      }
+    }
+  });
 });
