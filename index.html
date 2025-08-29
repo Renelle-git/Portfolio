@@ -1,366 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Renelle Quiñones — Computer Science Graduate</title>
-    <meta name="description" content="Hi, looking for backend developer?" />
 
-    <link rel="stylesheet" href="style.css" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Renelle Quiñones — Computer Science Graduate</title>
+  <meta name="description" content="Hi, looking for backend developer?" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-  </head>
-  <body>
-    <header>
-      <div class="container nav" role="navigation" aria-label="Main Navigation">
-        <a class="brand" href="#home" aria-label="Homepage">
-          <span class="logo" aria-hidden="true">RQ</span>
-          <span>Portfolio</span>
-        </a>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        <nav class="nav-links" aria-label="Primary">
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
-          <button class="btn-primary" id="downloadCV">Download CV</button>
-        </nav>
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
 
+<body class="bg-gray-50 text-gray-900 dark:bg-black dark:text-white">
+  <!-- Header -->
+  <header class="fixed top-0 left-0 w-full bg-white/80 backdrop-blur z-50 shadow-sm dark:bg-gray-900/80">
+    <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+      <!-- Brand -->
+      <a href="#home" class="flex items-center gap-2 font-bold text-lg">
+        <span
+          class="w-9 h-9 grid place-items-center rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow">RQ</span>
+        Portfolio
+      </a>
+
+      <!-- Nav Links -->
+      <nav class="hidden md:flex items-center gap-6 font-medium">
+        <a href="#about" class="hover:text-blue-500 transition">About</a>
+        <a href="#projects" class="hover:text-blue-500 transition">Projects</a>
+        <a href="#contact" class="hover:text-blue-500 transition">Contact</a>
         <button
-          class="hamburger"
-          id="hamburger"
-          aria-label="Open menu"
-          aria-controls="mobileMenu"
-          aria-expanded="false"
-        >
-          <i class="fa-solid fa-bars"></i>
-        </button>
-      </div>
-      <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true">
-        <a href="#about" onclick="closeMenu()">About</a>
-        <a href="#projects" onclick="closeMenu()">Projects</a>
-        <a href="#contact" onclick="closeMenu()">Contact</a>
-        <button
-          class="btn-primary"
-          style="margin-top: 8px"
-          onclick="closeMenu(); document.getElementById('downloadCV').click()"
-        >
+          class="px-4 py-2 rounded-full text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow hover:scale-105 transition">
           Download CV
         </button>
+      </nav>
+
+      <!-- Mobile Hamburger -->
+      <button id="hamburger" class="md:hidden text-xl">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden flex-col gap-4 px-6 py-4 bg-white shadow-md md:hidden">
+      <a href="#about" class="hover:text-blue-500">About</a>
+      <a href="#projects" class="hover:text-blue-500">Projects</a>
+      <a href="#contact" class="hover:text-blue-500">Contact</a>
+      <button class="px-4 py-2 rounded-full text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow">
+        Download CV
+      </button>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main id="home" class="pt-20">
+    <!-- Hero -->
+    <section class="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="uppercase tracking-widest text-sm text-gray-500 dark:text-gray-300">
+          Aspiring Backend Developer
+        </p>
+        <h1 class="text-4xl md:text-5xl font-bold mt-3 leading-smug">
+          Hi, I'm
+          <span class="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">Renelle
+            Quiñones</span>.<br />
+          I build reliable APIs & systems.
+        </h1>
+        <p class="mt-4 text-gray-600 dark:text-gray-300">
+          I'm novice in crafting secure REST APIs, database design, and
+          scalable services — with a focus on performance.
+        </p>
+        <div class="mt-6 flex gap-4">
+          <a href="#projects"
+            class="px-5 py-3 rounded-full text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow hover:scale-105 transition">View
+            Projects</a>
+        </div>
       </div>
-    </header>
 
-    <main id="home">
-      <!-- hero -->
-      <section class="hero">
-        <div class="container hero-grid">
-          <div>
-            <div class="eyebrow reveal" data-delay="0s">
-              Aspiring Backend Developer
-            </div>
-            <h1 class="title reveal" data-delay="0.04s">
-              Hi, I'm
-              <span
-                style="
-                  background: linear-gradient(
-                    135deg,
-                    var(--brand),
-                    var(--brand-2)
-                  );
-                  -webkit-background-clip: text;
-                  background-clip: text;
-                  color: transparent;
-                "
-                >Renelle Quiñones</span
-              >.<br />I build reliable APIs & systems.
-            </h1>
-            <p class="subtitle reveal" data-delay="0.08s">
-              I'm novice in crafting secure REST APIs, database design, and
-              scalable services — with a focus on performance.
-            </p>
-            <div
-              class="hero-cta reveal"
-              data-delay="0.12s"
-              style="margin-top: 18px; display: flex; gap: 12px"
-            >
-              <a class="btn-primary" href="#projects">View Projects</a>
-              <!-- <a class="btn" href="#contact">Contact Me</a> -->
-            </div>
+      <!-- Hero Card -->
+      <div class="p-6 rounded-2xl bg-white/50 shadow space-y-6">
+        <div class="flex gap-3 items-center">
+          <div class="w-10 h-10 grid place-items-center rounded-lg bg-black/10 dark:bg-white/10">
+            <i class="fa-solid fa-plus"></i>
           </div>
-
           <div>
-            <div class="hero-card reveal" data-delay="0.14s">
-              <div style="display: flex; gap: 12px; align-items: center">
-                <div
-                  style="
-                    width: 40px;
-                    height: 40px;
-                    display: grid;
-                    place-items: center;
-                    border-radius: 10px;
-                    background: rgba(255, 255, 255, 0.03);
-                  "
-                >
-                  <i class="fa-solid fa-plus"></i>
-                </div>
-
-                <div>
-                  <strong>Less than 1 year of experience</strong>
-                  <div style="color: var(--muted)">
-                    Building backend services & website
-                  </div>
-                </div>
-              </div>
-              <hr
-                style="
-                  border: 0;
-                  border-top: 1px solid rgba(255, 255, 255, 0.03);
-                  margin: 14px 0;
-                "
-              />
-              <div style="display: flex; gap: 13px; align-items: center">
-                <div
-                  style="
-                    width: 45px;
-                    height: 40px;
-                    display: grid;
-                    place-items: center;
-                    border-radius: 10px;
-                    background: rgba(255, 255, 255, 0.03);
-                  "
-                >
-                  <i class="fa-solid fa-layer-group"></i>
-                </div>
-
-                <div>
-                  <strong>Stack</strong>
-                  <div style="color: var(--muted)">
-                    PHP • JavaScript • MySQL • HTML
-                  </div>
-                  <div style="color: var(--muted)">
-                    CSS • Bootstrap • Laravel • Blade
-                  </div>
-                </div>
-              </div>
-            </div>
+            <strong>Less than 1 year of experience</strong>
+            <p class="dark:text-gray-400 text-sm">
+              Building backend services & websites
+            </p>
           </div>
         </div>
-      </section>
-
-      <section class="section" id="about" aria-labelledby="about-title">
-        <div class="container about-grid">
-          <div class="avatar reveal" data-delay="0.18s" aria-hidden="true">
-             <img src="images/profile/me.png" alt="My portrait" width="300" height="300" loading="lazy">
+        <hr class="border-white/10" />
+        <div class="flex gap-3 items-center">
+          <div class="w-11 h-10 grid place-items-center rounded-lg bg-black/10 dar:bg-white/10">
+            <i class="fa-solid fa-layer-group"></i>
           </div>
 
-          <div>
-            <h2 id="about-title" class="reveal" data-delay="0.22s">About Me</h2>
-            <p class="lead reveal" data-delay="0.26s">
-              I'm a backend developer who enjoys turning complex business logic
-              into elegant, maintainable code. I care about clean architecture,
-              observability, and shipping features that matter.
-            </p>
-            <div
-              class="chip-row reveal"
-              data-delay="0.30s"
-              role="list"
-              aria-label="Skills"
-            >
-              <span class="chip" role="listitem">Skills dito</span>
-              <!-- <span class="chip" role="listitem"
-                >PHP (Laravel 12 | Vanilla)</span
-              >
-              <span class="chip" role="listitem">MySQL</span>
-              <span class="chip" role="listitem">HTML</span>
-              <span class="chip" role="listitem">CSS</span>
-              <span class="chip" role="listitem">Boostrap</span>
-              <span class="chip" role="listitem">JavaScript</span>
-              <span class="chip" role="listitem">REST API</span> -->
+          <div class="flex flex-wrap gap-3">
+            <strong>Tech Stack</strong>
+            <div>
+              <span class="px-4 py-1 bg-gray-200 rounded-full text-sm dark:bg-gray-700">PHP (Laravel)</span>
+              <span class="px-4 py-1 bg-gray-200 rounded-full text-sm dark:bg-gray-700">MySQL</span>
+              <span class="px-4 py-1 bg-gray-200 rounded-full text-sm dark:bg-gray-700">JavaScript</span>
+              <span class="px-4 py-1 bg-gray-200 rounded-full text-sm dark:bg-gray-700">REST APIs</span>
             </div>
+
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- project -->
-      <section class="section" id="projects" aria-labelledby="projects-title">
-        <div class="container">
-          <h2 id="projects-title" class="reveal" data-delay="0.12s">
-            Projects
-          </h2>
-          <p class="lead reveal" data-delay="0.16s">
-            A few things I've built and shipped recently.
+    <!-- About -->
+    <section id="about" class="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 items-center">
+      <div class="flex justify-center">
+        <!-- Portrait -->
+        <img src="images/profile/me.png" alt="My portrait"
+          class="rounded-2xl shadow w-48 h-48 sm:w-60 sm:h-60 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 object-fill dark:bg-gray-900" loading="lazy" />
+      </div>
+
+      <div>
+        <h2 class="text-3xl font-bold mb-4">About Me</h2>
+        <p class="text-gray-600 mb-4 dark:text-gray-300">
+          I'm a backend developer who enjoys turning complex business logic
+          into elegant, maintainable code. I care about clean architecture,
+          observability, and shipping features that matter.
+        </p>
+        <div class="flex flex-wrap gap-3">
+
+          <p class="dark:text-gray-400 text-sm">
+            • PHP
           </p>
-
-          <div class="grid projects">
-            <article class="project-card reveal" aria-labelledby="p1-title">
-              <div class="project-media" aria-hidden="true">
-                <img class="project-image" src="images/project/doc_tracking.png" alt="" />
-              </div>
-              <div class="project-body">
-                <h3 class="project-title" id="p1-title">
-                  Document Tracking System
-                </h3>
-                <p class="project-desc">
-                  Routing & timeline for documents across offices. Role-based
-                  access, audit logs, notifications.
-                </p>
-              </div>
-              <div class="project-actions" style="padding: 14px">
-                <a
-                  class="btn-primary"
-                  href="https://dtfrs.ccs-sluc.com/"
-                  target="_blank"
-                  >Live Demo</a
-                >
-                <!-- <a class="btn" href="#">GitHub</a> -->
-              </div>
-            </article>
-
-            <article class="project-card reveal" aria-labelledby="p2-title">
-              <div class="project-media" aria-hidden="true"></div>
-              <div class="project-body">
-                <h3 class="project-title" id="p2-title">Lazy-Job</h3>
-                <p class="project-desc">
-                  Lazy-Job is a modern job board web application built with
-                  Laravel.
-                </p>
-              </div>
-              <div class="project-actions" style="padding: 14px">
-                <a
-                  class="btn-primary"
-                  href="https://github.com/Renelle-git/Lazy-Job"
-                  target="_blank"
-                  >GitHub</a
-                >
-                <a
-                  class="btn-secondary"
-                  href="https://renelle-git.github.io/Lazy-Job/"
-                  target="_blank"
-                  >Case Study</a
-                >
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="contact" aria-labelledby="contact-title">
-        <div class="container contact-grid">
-          <div class="card reveal" data-delay="0.12s">
-            <h2 id="contact-title">Contact Me</h2>
-            <p class="lead">
-              Have a question or a project in mind? Send a message — I usually
-              reply within 24 hours.
-            </p>
-            <form id="contactForm" novalidate>
-              <p
-                id="formMsg"
-                role="status"
-                style="margin-top: 10px; color: var(--error)"
-              ></p>
-
-              <label class="sr-only" for="name">Name</label>
-              <input
-                class="input"
-                id="name"
-                name="name"
-                placeholder="Your name"
-                required
-              />
-              <div style="height: 10px"></div>
-              <label class="sr-only" for="email">Email</label>
-              <input
-                class="input"
-                id="email"
-                type="email"
-                name="email"
-                placeholder="you@example.com"
-                required
-              />
-              <div style="height: 10px"></div>
-              <label class="sr-only" for="message">Message</label>
-              <textarea
-                class="input"
-                id="message"
-                name="message"
-                placeholder="Tell me about your project..."
-                required
-              ></textarea>
-              <div style="height: 14px"></div>
-              <button class="btn-primary" type="submit">Send Message</button>
-            </form>
-          </div>
-
-          <div class="card reveal" data-delay="0.16s">
-            <h3 style="margin-top: 0">What I Work With</h3>
-            <ul style="margin: 8px 0 0 18px; color: var(--muted)">
-              <li>Laravel 12, PHP 8.3, Blade/Breeze</li>
-              <li>MySQL, SQlite, Eloquent</li>
-              <li>REST APIs, Boostrap 5</li>
-            </ul>
-            <div style="height: 12px"></div>
-            <h3>Availability</h3>
-            <p style="margin: 6px 0 0; color: var(--muted)">
-              Open to freelance and full-time roles.
-            </p>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div
-        class="container"
-        style="
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 16px;
-          flex-wrap: wrap;
-        "
-      >
-        <div>
-          <div>
-            &copy; <span id="year"></span> Renelle Quiñones. All rights
-            reserved.
-          </div>
-          <div style="font-size: 13px">Built with HTML • CSS • JavaScript</div>
-        </div>
-        <div class="socials" aria-label="Social links">
-          <a
-            href="https://github.com/Renelle-git"
-            target="_blank"
-            rel="noopener"
-            aria-label="GitHub"
-            ><i class="fa-brands fa-github"></i
-          ></a>
-          <a
-            href="www.linkedin.com/in/renelle-quiñones-7a53b2363"
-            target="_blank"
-            rel="noopener"
-            aria-label="LinkedIn"
-            ><i class="fa-brands fa-linkedin"></i
-          ></a>
-          <a
-            href="https://www.facebook.com/share/1QWYMFvCH9/"
-            target="_blank"
-            rel="noopener"
-            aria-label="X"
-            ><i class="fa-brands fa-facebook"></i
-          ></a>
-        </div>
-
-        <div>
-          Contact Number:
-          <span> +63 966-279-8107</span>
+          <p class="dark:text-gray-400 text-sm">
+            • JavaScript
+          </p>
+          <p class="dark:text-gray-400 text-sm">
+            • MySQL
+          </p>
+          <p class="dark:text-gray-400 text-sm">
+            • HTML
+          </p>
+          <p class="dark:text-gray-400 text-sm">
+            • PHP • JavaScript • MySQL • HTML •CSS Bootstrap • Laravel • Blade
+          </p>
+          <p class="dark:text-gray-400 text-sm">
+            • PHP • JavaScript • MySQL • HTML •CSS Bootstrap • Laravel • Blade
+          </p>
         </div>
       </div>
-    </footer>
+    </section>
 
-    <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
+    <!-- Projects -->
+    <section id="projects" class="max-w-6xl mx-auto px-6 py-16">
+      <h2 class="text-3xl font-bold mb-4">Projects</h2>
+      <p class="text-gray-600 mb-8 dark:text-gray-300">
+        A few things I've built and shipped recently.
+      </p>
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Project 1 -->
+        <article class="rounded-xl overflow-hidden shadow hover:shadow-xl transition bg-white dark:bg-gray-900">
+          <img src="images/project/doc_tracking.png" alt="Document Tracking System"
+            class="w-full aspect-video object-cover" />
+          <div class="p-6">
+            <h3 class="text-xl font-semibold">Document Tracking System</h3>
+            <p class="text-gray-600 mt-2 dark:text-gray-300">
+              Routing & timeline for documents across offices. Role-based
+              access, audit logs, notifications.
+            </p>
+            <a href="https://dtfrs.ccs-sluc.com/" target="_blank"
+              class="inline-block mt-4 px-4 py-2 rounded-full text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow hover:scale-105 transition">Live
+              Demo</a>
+          </div>
+        </article>
 
-    <script src="script.js"></script>
-  </body>
+        <!-- Project 2 -->
+        <article class="rounded-xl overflow-hidden shadow hover:shadow-xl transition bg-white dark:bg-gray-900">
+          <img src="https://placehold.co/600x400" alt="Document Tracking System"
+            class="w-full aspect-video object-cover" />
+          <div class="p-6">
+            <h3 class="text-xl font-semibold">Lazy-Job</h3>
+            <p class="text-gray-600 mt-2 dark:text-gray-300">
+              Lazy-Job is a modern job board web application built with
+              Laravel.
+            </p>
+            <div class="flex gap-3 mt-4">
+              <a href="https://github.com/Renelle-git/Lazy-Job" target="_blank"
+                class="px-4 py-2 rounded-full text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow hover:scale-105 transition">GitHub</a>
+              <a href="https://renelle-git.github.io/Lazy-Job/" target="_blank"
+                class="px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-800">Case Study</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12">
+      <div class="p-6 bg-white shadow rounded-xl dark:bg-gray-900">
+        <h2 class="text-2xl font-bold">Contact Me</h2>
+        <p class="text-gray-600 mt-2 mb-6 dark:text-gray-300">
+          Have a question or a project in mind? Send a message — I usually
+          reply within 24 hours.
+        </p>
+        <form id="contactForm" class="space-y-4">
+          <input id="name" name="name" placeholder="Your name" required
+            class="w-full px-4 py-2 border rounded-lg dark:bg-gray-900" />
+          <input id="email" type="email" name="email" placeholder="you@example.com" required
+            class="w-full px-4 py-2 border rounded-lg dark:bg-gray-900" />
+          <textarea id="message" name="message" placeholder="Tell me about your project..." required
+            class="w-full px-4 py-2 border rounded-lg h-28 dark:bg-gray-900"></textarea>
+          <button type="submit"
+            class="w-full px-4 py-2 rounded-full text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow hover:scale-105">
+            Send Message
+          </button>
+        </form>
+      </div>
+      <div class="p-6 bg-white shadow rounded-xl dark:bg-gray-900">
+        <h3 class="text-lg font-semibold">What I Work With</h3>
+        <ul class="list-disc list-inside text-gray-600 mt-3 dark:text-gray-300">
+          <li>Laravel 12, PHP 8.3, Blade/Breeze</li>
+          <li>MySQL, SQLite, Eloquent</li>
+          <li>REST APIs, Bootstrap 5</li>
+        </ul>
+        <h3 class="text-lg font-semibold mt-6">Availability</h3>
+        <p class="text-gray-600 dark:text-gray-300">
+          Open to freelance and full-time roles.
+        </p>
+
+        <div>
+          <h3 class="text-lg font-semibold mt-6">Others</h3>
+          <div class="flex gap-4 text-xl">
+            <a href="https://github.com/Renelle-git" target="_blank" aria-label="GitHub"><i
+                class="fa-brands fa-github"></i></a>
+            <a href="www.linkedin.com/in/renelle-quiñones-7a53b2363" target="_blank" aria-label="LinkedIn"><i
+                class="fa-brands fa-linkedin"></i></a>
+            <a href="https://www.facebook.com/share/1QWYMFvCH9/" target="_blank" aria-label="Facebook"><i
+                class="fa-brands fa-facebook"></i></a>
+          </div>
+          <div>
+            <span>Contact: +63 966-279-8107</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 py-6">
+    <div class="max-w-6xl mx-auto px-6 flex flex-wrap justify-center items-center gap-4">
+      <p>
+        &copy; <span id="year"></span> Renelle Quiñones. All rights reserved.
+      <p class="text-sm">Built with HTML • TailwindCSS • JavaScript</p>
+      </p>
+
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop"
+    class="hidden fixed bottom-6 right-6 w-12 h-12 rounded-full text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg hover:scale-110 transition">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const hamburger = document.getElementById("hamburger");
+    const mobileMenu = document.getElementById("mobileMenu");
+    hamburger.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+    const backToTop = document.getElementById("backToTop");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) backToTop.classList.remove("hidden");
+      else backToTop.classList.add("hidden");
+    });
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</body>
+
 </html>
