@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
   <meta charset="utf-8" />
@@ -9,6 +9,8 @@
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- scroll animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -16,13 +18,13 @@
 
 <body class="bg-gray-50 text-gray-900 dark:bg-black dark:text-white">
   <!-- Header -->
-  <header class="fixed top-0 left-0 w-full bg-white/80 backdrop-blur z-50 shadow-sm dark:bg-gray-900/80">
+  <header class="fixed top-0 left-0 w-full bg-white/80 backdrop-blur z-50 shadow-sm dark:bg-gray-900/80"
+    data-aos="fade-down">
     <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
       <!-- Brand -->
       <a href="#home" class="flex items-center gap-2 font-bold text-lg">
         <span
           class="w-9 h-9 grid place-items-center rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow">RQ</span>
-        Portfolio
       </a>
 
       <!-- Nav Links -->
@@ -31,7 +33,8 @@
         <a href="#projects" class="hover:text-blue-500 transition">Projects</a>
         <a href="#contact" class="hover:text-blue-500 transition">Contact</a>
         <button
-          class="px-4 py-2 rounded-full text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow hover:scale-105 transition">
+          class="px-4 py-2 rounded-full text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow hover:scale-105 transition"
+          id="downloadCV">
           Download CV
         </button>
       </nav>
@@ -43,20 +46,24 @@
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobileMenu" class="hidden flex-col gap-4 px-6 py-4 bg-white shadow-md md:hidden">
-      <a href="#about" class="hover:text-blue-500">About</a>
-      <a href="#projects" class="hover:text-blue-500">Projects</a>
-      <a href="#contact" class="hover:text-blue-500">Contact</a>
-      <button class="px-4 py-2 rounded-full text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow">
-        Download CV
-      </button>
-    </div>
+    <div id="mobileMenu" class="hidden md:hidden dark:bg-black/70 bg-white shadow-lg z-50">
+      <nav class="flex flex-col space-y-4 p-2">
+        <a href="#home" class="block text-white ">Home</a>
+        <a href="#about" class="block text-white ">About</a>
+        <a href="#projects" class="block text-white ">Projects</a>
+        <a href="#contact" class="block text-white ">Contact</a>
+        <button
+          class="px-4 py-2 rounded-full text-white bg-gradient-to-r from-blue-500 to-purple-500"
+          id="downloadCV">
+          Download CV
+        </button>
+      </nav>
   </header>
 
   <!-- Main -->
-  <main id="home" class="pt-20">
+  <main id="home" class="mt-20 pt-4 max-md:mt-10 max-md:pt-20">
     <!-- Hero -->
-    <section class="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 items-center">
+    <section class="max-w-6xl mx-auto px-6 py-15 grid md:grid-cols-2 gap-12 items-center" data-aos="zoom-in">
       <div>
         <p class="uppercase tracking-widest text-sm text-gray-500 dark:text-gray-300">
           Aspiring Backend Developer
@@ -79,7 +86,7 @@
       </div>
 
       <!-- Hero Card -->
-      <div class="p-6 rounded-2xl bg-white/50 shadow space-y-6">
+      <div class="p-6 rounded-2xl bg-white/5 dark:bg-gray-900 shadow space-y-6">
         <div class="flex gap-3 items-center">
           <div class="w-10 h-10 grid place-items-center rounded-lg bg-black/10 dark:bg-white/10">
             <i class="fa-solid fa-plus"></i>
@@ -93,7 +100,7 @@
         </div>
         <hr class="border-white/10" />
         <div class="flex gap-3 items-center">
-          <div class="w-11 h-10 grid place-items-center rounded-lg bg-black/10 dar:bg-white/10">
+          <div class="w-11 h-10 grid place-items-center rounded-lg bg-black/10 dark:bg-white/10">
             <i class="fa-solid fa-layer-group"></i>
           </div>
 
@@ -113,20 +120,21 @@
 
     <!-- About -->
     <section id="about" class="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 items-center">
-      <div class="flex justify-center">
+      <div class="flex justify-center" data-aos="fade-right">
         <!-- Portrait -->
         <img src="images/profile/me.png" alt="My portrait"
-          class="rounded-2xl shadow w-48 h-48 sm:w-60 sm:h-60 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 object-fill dark:bg-gray-900" loading="lazy" />
+          class="rounded-2xl shadow w-48 h-48 sm:w-60 sm:h-60 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 object-fill dark:bg-gray-900"
+          loading="lazy" />
       </div>
 
-      <div>
+      <div data-aos="fade-left">
         <h2 class="text-3xl font-bold mb-4">About Me</h2>
         <p class="text-gray-600 mb-4 dark:text-gray-300">
           I'm a backend developer who enjoys turning complex business logic
           into elegant, maintainable code. I care about clean architecture,
           observability, and shipping features that matter.
         </p>
-        <div class="flex flex-wrap gap-3">
+        <div class="flex flex-wrap gap-3 dark:text-gray-300">
 
           <p class="dark:text-gray-400 text-sm">
             • PHP
@@ -158,7 +166,8 @@
       </p>
       <div class="grid md:grid-cols-2 gap-8">
         <!-- Project 1 -->
-        <article class="rounded-xl overflow-hidden shadow hover:shadow-xl transition bg-white dark:bg-gray-900">
+        <article class="rounded-xl overflow-hidden shadow hover:shadow-xl transition bg-white dark:bg-gray-900"
+          data-aos="zoom-in">
           <img src="images/project/doc_tracking.png" alt="Document Tracking System"
             class="w-full aspect-video object-cover" />
           <div class="p-6">
@@ -174,7 +183,8 @@
         </article>
 
         <!-- Project 2 -->
-        <article class="rounded-xl overflow-hidden shadow hover:shadow-xl transition bg-white dark:bg-gray-900">
+        <article class="rounded-xl overflow-hidden shadow hover:shadow-xl transition bg-white dark:bg-gray-900"
+          data-aos="zoom-in">
           <img src="https://placehold.co/600x400" alt="Document Tracking System"
             class="w-full aspect-video object-cover" />
           <div class="p-6">
@@ -196,18 +206,19 @@
 
     <!-- Contact -->
     <section id="contact" class="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12">
-      <div class="p-6 bg-white shadow rounded-xl dark:bg-gray-900">
+      <div class="p-6 bg-white shadow rounded-xl dark:bg-gray-900" data-aos="fade-right">
         <h2 class="text-2xl font-bold">Contact Me</h2>
         <p class="text-gray-600 mt-2 mb-6 dark:text-gray-300">
           Have a question or a project in mind? Send a message — I usually
           reply within 24 hours.
         </p>
         <form id="contactForm" class="space-y-4">
-          <input id="name" name="name" placeholder="Your name" required
+          <p class="text-red-500" id="formMsg"></p>
+          <input id="name" name="name" placeholder="Your name"
             class="w-full px-4 py-2 border rounded-lg dark:bg-gray-900" />
-          <input id="email" type="email" name="email" placeholder="you@example.com" required
+          <input id="email" type="email" name="email" placeholder="you@example.com"
             class="w-full px-4 py-2 border rounded-lg dark:bg-gray-900" />
-          <textarea id="message" name="message" placeholder="Tell me about your project..." required
+          <textarea id="message" name="message" placeholder="Tell me about your project..."
             class="w-full px-4 py-2 border rounded-lg h-28 dark:bg-gray-900"></textarea>
           <button type="submit"
             class="w-full px-4 py-2 rounded-full text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow hover:scale-105">
@@ -215,7 +226,7 @@
           </button>
         </form>
       </div>
-      <div class="p-6 bg-white shadow rounded-xl dark:bg-gray-900">
+      <div class="p-6 bg-white shadow rounded-xl dark:bg-gray-900" data-aos="fade-left">
         <h3 class="text-lg font-semibold">What I Work With</h3>
         <ul class="list-disc list-inside text-gray-600 mt-3 dark:text-gray-300">
           <li>Laravel 12, PHP 8.3, Blade/Breeze</li>
@@ -263,25 +274,8 @@
   </button>
 
   <!-- Script -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="script.js"></script>
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const hamburger = document.getElementById("hamburger");
-    const mobileMenu = document.getElementById("mobileMenu");
-    hamburger.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
-    });
-
-    const backToTop = document.getElementById("backToTop");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 300) backToTop.classList.remove("hidden");
-      else backToTop.classList.add("hidden");
-    });
-    backToTop.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  </script>
 </body>
 
 </html>

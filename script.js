@@ -1,52 +1,97 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // Animate on scroll (AOS)
+  if (typeof AOS !== "undefined") {
+    AOS.init({ duration: 1200 });
+  }
+
+
   const header = document.querySelector("header");
   const hamburger = document.getElementById("hamburger");
   const mobileMenu = document.getElementById("mobileMenu");
+  const backToTop = document.getElementById("backToTop");
 
-  function setHeaderHeight() {
-    if (!header) return;
-    const h = Math.round(header.getBoundingClientRect().height);
-    document.documentElement.style.setProperty("--header-h", h + "px");
-    document.body.style.paddingTop = h + "px";
-  }
+  /** ---------------------------
+   * Header height and sticky padding
+   * -------------------------- */
+  // function setHeaderHeight() {
+  //   if (!header) return;
+  //   const h = Math.round(header.getBoundingClientRect().height);
+  //   document.documentElement.style.setProperty("--header-h", h + "px");
+  //   document.body.style.paddingTop = h + "px";
+  // }
+  // setHeaderHeight();
+  // window.addEventListener("resize", setHeaderHeight);
 
-  setHeaderHeight();
-  window.addEventListener("resize", setHeaderHeight);
+  /** ---------------------------
+   * Mobile Menu
+   * -------------------------- */
+if (hamburger && mobileMenu) {
+  // Toggle menu
+  hamburger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    mobileMenu.classList.toggle("hidden");
+  });
 
-  // Mobile menu toggle and close helper
-  function closeMenu() {
-    if (mobileMenu) mobileMenu.classList.remove("open");
-    if (hamburger) hamburger.setAttribute("aria-expanded", "false");
-  }
-  window.closeMenu = closeMenu; // exposed for inline onclick
+  // Close menu if clicking outside
+  document.addEventListener("click", (e) => {
+    if (
+      !mobileMenu.classList.contains("hidden") &&
+      !mobileMenu.contains(e.target) &&
+      !hamburger.contains(e.target)
+    ) {
+      mobileMenu.classList.add("hidden");
+    }
+  });
 
-  if (hamburger && mobileMenu) {
-    hamburger.addEventListener("click", function (e) {
-      e.stopPropagation();
-      const open = mobileMenu.classList.toggle("open");
-      hamburger.setAttribute("aria-expanded", String(open));
+  // Close after clicking a link
+  mobileMenu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.add("hidden");
     });
+  });
+}
 
-    // close menu on outside click
-    document.addEventListener("click", function (e) {
-      if (!mobileMenu.classList.contains("open")) return;
-      if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target))
-        closeMenu();
-    });
-  }
 
-  // shrink header on scroll
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    const target = document.querySelector(this.getAttribute("href"));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: "smooth" });
+
+      // Close mobile menu after clicking
+      if (!mobileMenu.classList.contains("hidden")) {
+        mobileMenu.classList.add("hidden");
+      }
+    }
+  });
+});
+
+  /** ---------------------------
+   * Scroll: shrink header + show Back-to-Top
+   * -------------------------- */
   window.addEventListener(
     "scroll",
-    function () {
-      if (!header) return;
-      if (window.scrollY > 28) header.classList.add("scrolled");
-      else header.classList.remove("scrolled");
+    () => {
+      if (header) {
+        header.classList.toggle("scrolled", window.scrollY > 28);
+      }
+      if (backToTop) {
+        backToTop.style.display = window.scrollY > 300 ? "block" : "none";
+      }
     },
     { passive: true }
   );
 
-  // Scroll reveal
+  if (backToTop) {
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  /** ---------------------------
+   * Reveal (IntersectionObserver fallback)
+   * -------------------------- */
   const reveals = document.querySelectorAll(".reveal");
   const projectCards = document.querySelectorAll(".projects .project-card");
   projectCards.forEach((el, i) => (el.dataset.delay = i * 0.06 + "s"));
@@ -57,8 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const el = entry.target;
-            const d = el.dataset.delay || "0s";
-            el.style.transitionDelay = d;
+            el.style.transitionDelay = el.dataset.delay || "0s";
             el.classList.add("active");
             observer.unobserve(el);
           }
@@ -68,13 +112,14 @@ document.addEventListener("DOMContentLoaded", function () {
     );
     reveals.forEach((r) => obs.observe(r));
   } else {
-    // fallback: show everything
     reveals.forEach((r) => r.classList.add("active"));
   }
 
-  // Scrollspy for nav links
+  /** ---------------------------
+   * Scrollspy
+   * -------------------------- */
   const sections = document.querySelectorAll("main section[id]");
-  const navLinks = document.querySelectorAll(".nav-links a");
+  const navLinks = document.querySelectorAll("header nav a, #mobileMenu a");
   if ("IntersectionObserver" in window) {
     const spy = new IntersectionObserver(
       (entries) => {
@@ -92,30 +137,19 @@ document.addEventListener("DOMContentLoaded", function () {
     sections.forEach((s) => spy.observe(s));
   }
 
-  // Download CV
+  /** ---------------------------
+   * Download CV (placeholder)
+   * -------------------------- */
   const downloadBtn = document.getElementById("downloadCV");
   if (downloadBtn) {
-    downloadBtn.addEventListener("click", function () {
-      // const blob = new Blob(
-      //   [
-      //     `John Doe — Backend Developer\n\n` +
-      //       `Email: johndoe@example.com\nGitHub: https://github.com/johndoe\nLinkedIn: https://linkedin.com/in/johndoe\n\nSkills: PHP (Laravel 12), Node.js, MySQL, Redis, Docker, REST/GraphQL\n\nExperience: Built and maintained scalable APIs and services.\nProjects: Document Tracking, Inventory System, Training Portal, Task Manager.\n`,
-      //   ],
-      //   { type: "text/plain" }
-      // );
-      // const url = URL.createObjectURL(blob);
-      // const a = document.createElement("a");
-      // a.href = url;
-      // a.download = "John-Doe-CV.txt";
-      // a.click();
-      // URL.revokeObjectURL(url);
-
-
-      alert('Under Maintenance 😁');
+    downloadBtn.addEventListener("click", () => {
+      alert("Under Maintenance 😁");
     });
   }
 
-  // Contact form basic handling
+  /** ---------------------------
+   * Contact Form
+   * -------------------------- */
   const form = document.getElementById("contactForm");
   const formMsg = document.getElementById("formMsg");
   if (form) {
@@ -124,17 +158,19 @@ document.addEventListener("DOMContentLoaded", function () {
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
       const message = document.getElementById("message").value.trim();
+
       if (!name || !email || !message) {
         formMsg.textContent = "Please fill out all fields.";
         return;
       }
-      if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) {
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         formMsg.textContent = "Please enter a valid email.";
         return;
       }
+
       const subject = encodeURIComponent("Portfolio Inquiry from " + name);
       const body = encodeURIComponent(
-        message + "\\n\\n— " + name + " (" + email + ")"
+        message + "\n\n— " + name + " (" + email + ")"
       );
       window.location.href = `mailto:renellequinones7@gmail.com?subject=${subject}&body=${body}`;
       formMsg.textContent = "Opening your email client...";
@@ -142,29 +178,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // dynamic year
+  /** ---------------------------
+   * Dynamic Year
+   * -------------------------- */
   const y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();
-
-
-  // Get button
-const backToTop = document.getElementById("backToTop");
-
-// Show button when scrolling down
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    backToTop.style.display = "block";
-  } else {
-    backToTop.style.display = "none";
-  }
-});
-
-// Scroll smoothly to top when clicked
-backToTop.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-});
-
 });
