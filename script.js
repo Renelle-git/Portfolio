@@ -155,13 +155,37 @@ document.addEventListener("DOMContentLoaded", function () {
   /** ---------------------------
    * Download CV Buttons
    * -------------------------- */
-  const downloadBtns = document.querySelectorAll(
-    "#downloadCV, #downloadCVMobile"
-  );
-  downloadBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      alert("CV Download - Under Maintenance 😁");
-    });
+  // const downloadBtns = document.querySelectorAll(
+  //   "#downloadCV, #downloadCVMobile"
+  // );
+  // downloadBtns.forEach((btn) => {
+  //   btn.addEventListener("click", () => {
+  //     alert("CV Download - Under Maintenance 😁");
+  //   });
+  // });
+
+  const toggleBtn = document.getElementById("requestCvBtn");
+  const closeBtn = document.getElementById("closeFormBtn");
+  const formCard = document.getElementById("cvFormCard");
+  const cvform = document.getElementById("cvRequestForm");
+
+  toggleBtn.addEventListener("click", () => {
+    formCard.classList.toggle("hidden");
+  });
+
+  closeBtn.addEventListener("click", () => {
+    formCard.classList.add("hidden");
+  });
+
+  cvform.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = cvform.querySelector("input[name='body']").value;
+    const email = cvform.querySelector("input[name='email']").value;
+    try {
+      window.location.href = `mailto:quinonesrenelle7@gmail.com?subject=CV Request&body=Name: ${name}%0D%0AEmail: ${email}`;
+    } catch (error) {
+      alert("Error opening email client. Please try again.");
+    }
   });
 
   /** ---------------------------
@@ -202,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
       try {
-        window.location.href = `mailto:renellequinones7@gmail.com?subject=${subject}&body=${body}`;
+        window.location.href = `mailto:quinonesrenelle7@gmail.com?subject=${subject}&body=${body}`;
         formMsg.textContent = "Opening your email client...";
         formMsg.className = "text-green-600 text-sm";
 
@@ -257,4 +281,69 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   });
+});
+
+function typeWriter(element, text, speed = 100) {
+  let i = 0;
+  element.innerHTML = "";
+
+  function type() {
+    if (i < text.length) {
+      element.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+
+  type();
+}
+
+// Multiple phrases to cycle through
+const phrases = [
+  "Aspiring Backend Developer",
+  "Code Newbie with Big Dreams",
+  "Learning One Bug at a Time",
+  "Building APIs & Breaking Things",
+  "From Zero to Full Stack Hero",
+  "Debugging Life, One Line at a Time",
+  "Writing Code, Changing Lives",
+  "API Creator in Progress",
+  "Next Stop: Full Stack Developer",
+  "Turning Ideas into Code",
+  "Backend Rookie, Frontend Curious"
+];
+
+let currentPhraseIndex = 0;
+const typingElement = document.getElementById("typing-text");
+
+function startTypingCycle() {
+  const currentPhrase = phrases[currentPhraseIndex];
+
+  // Type the current phrase
+  typeWriter(typingElement, currentPhrase, 80);
+
+  // After typing is complete, wait then clear and move to next phrase
+  setTimeout(() => {
+    // Clear text with backspace effect
+    let currentText = typingElement.innerHTML;
+
+    function backspace() {
+      if (currentText.length > 0) {
+        currentText = currentText.slice(0, -1);
+        typingElement.innerHTML = currentText;
+        setTimeout(backspace, 50);
+      } else {
+        // Move to next phrase
+        currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+        setTimeout(startTypingCycle, 500);
+      }
+    }
+
+    setTimeout(backspace, 2000); // Wait 2 seconds before backspacing
+  }, currentPhrase.length * 80 + 500);
+}
+
+// Start the typing animation when page loads
+window.addEventListener("load", () => {
+  setTimeout(startTypingCycle, 1000); // Start after 1 second delay
 });
