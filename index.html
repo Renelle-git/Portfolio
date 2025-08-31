@@ -31,10 +31,10 @@
       </a>
 
       <!-- Nav Links (Desktop) -->
-      <nav class="hidden md:flex items-center gap-6 font-medium">
-        <a href="#about" class="hover:text-blue-500 transition">About</a>
-        <a href="#projects" class="hover:text-blue-500 transition">Projects</a>
-        <a href="#contact" class="hover:text-blue-500 transition">Contact</a>
+      <nav class="hidden md:flex items-center gap-6 font-bold uppercase">
+        <a href="#about" class="hover:text-blue-500 hover:underline underline-offset-4 transition">About</a>
+        <a href="#projects" class="hover:text-blue-500 hover:underline underline-offset-4 transition">Projects</a>
+        <a href="#contact" class="hover:text-blue-500 hover:underline underline-offset-4 transition">Contact</a>
 
       </nav>
 
@@ -52,7 +52,7 @@
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-gray-900 shadow-lg border-t dark:border-gray-700">
+    <div id="mobileMenu" class="hidden font-semibold md:hidden bg-white dark:bg-gray-900 shadow-lg border-t dark:border-gray-700">
       <nav class="flex flex-col p-6 text-gray-800 dark:text-white">
         <a href="#home"
           class="py-3 hover:text-blue-500 transition-colors border-b border-gray-200 dark:border-gray-700">Home</a>
@@ -69,38 +69,39 @@
 
 
   <!-- Card Form - Positioned in top-right corner -->
-<div id="cvFormCard" class="hidden fixed top-20 right-6 w-80 max-w-sm
+  <div id="cvFormCard" class="hidden fixed top-20 right-6 w-80 max-w-sm
   bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-6 z-50
   transition-transform transform">
 
-  <div class="flex justify-between items-center mb-4">
-    <h2 class="text-lg font-bold text-gray-700 dark:text-gray-200">Request CV</h2>
-    <button id="closeFormBtn" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-xl">&times;</button>
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-lg font-bold text-gray-700 dark:text-gray-200">Request CV</h2>
+      <button id="closeFormBtn"
+        class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-xl">&times;</button>
+    </div>
+
+    <form id="cvRequestForm" method="GET" action="">
+      <input type="hidden" name="subject" value="CV Request">
+
+      <div class="mb-3">
+        <label class="block text-sm text-gray-600 dark:text-gray-300 mb-1">Your Name</label>
+        <input type="text" name="body" placeholder="Enter your name"
+          class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+          required>
+      </div>
+
+      <div class="mb-3">
+        <label class="block text-sm text-gray-600 dark:text-gray-300 mb-1">Your Email</label>
+        <input type="email" name="email" placeholder="Enter your email"
+          class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white"
+          required>
+      </div>
+
+      <button type="submit"
+        class="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 rounded-lg shadow-md hover:opacity-90">
+        Send Request
+      </button>
+    </form>
   </div>
-
-  <form id="cvRequestForm" method="GET" action="">
-    <input type="hidden" name="subject" value="CV Request">
-
-    <div class="mb-3">
-      <label class="block text-sm text-gray-600 dark:text-gray-300 mb-1">Your Name</label>
-      <input type="text" name="body" placeholder="Enter your name"
-        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
-        required>
-    </div>
-
-    <div class="mb-3">
-      <label class="block text-sm text-gray-600 dark:text-gray-300 mb-1">Your Email</label>
-      <input type="email" name="email" placeholder="Enter your email"
-        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white"
-        required>
-    </div>
-
-    <button type="submit"
-      class="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 rounded-lg shadow-md hover:opacity-90">
-      Send Request
-    </button>
-  </form>
-</div>
 
 
   <!-- Main -->
@@ -112,7 +113,7 @@
         <p class="uppercase tracking-widest text-sm text-gray-500 dark:text-gray-300">
           <span id="typing-text"></span>
           <!-- Aspiring Backend Developer -->
-           <span class="typing-cursor text-blue-500">|</span>
+          <span class="typing-cursor text-blue-500">|</span>
         </p>
         <h1 class="text-4xl md:text-5xl font-bold mt-3 leading-tight">
           Hi, I'm
@@ -185,13 +186,12 @@
     <section id="about" class="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 items-center">
       <div class="flex justify-center order-2 md:order-1" data-aos="zoom-in">
         <!-- Portrait -->
-        <div
-          class="w-48 h-48 md:w-72 md:h-72 lg:w-80 lg:h-80 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl shadow-xl flex items-center justify-center">
-          <div
-            class="w-44 h-44 md:w-68 md:h-68 lg:w-76 lg:h-76 bg-gray-200 dark:bg-gray-700 rounded-xl flex items-center justify-center shadow-lg">
-            <img src="images/profile/me.png" alt="Profile" class="rounded-xl shadow-xl" />
-          </div>
+
+        <div>
+          <img srcset="images/profile/me.png 1x, images/profile/me.png 2x" class="w-full h-96 max-w-xl rounded-lg bg-gradient-to-r from-blue-300 to-purple-300 dark:bg-gradient-to-r dark:from-blue-500 dark:to-purple-500 shadow-xl flex items-center justify-center"
+            alt="Profile" />
         </div>
+
 
       </div>
 

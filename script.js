@@ -301,16 +301,14 @@ function typeWriter(element, text, speed = 100) {
 // Multiple phrases to cycle through
 const phrases = [
   "Aspiring Backend Developer",
+  "Turning Ideas into Code",
+  "Backend Rookie, Frontend Curious",
+  "Next Stop: Full Stack Developer",
   "Code Newbie with Big Dreams",
-  "Learning One Bug at a Time",
-  "Building APIs & Breaking Things",
+  "Building API's & Breaking Things",
   "From Zero to Full Stack Hero",
   "Debugging Life, One Line at a Time",
-  "Writing Code, Changing Lives",
-  "API Creator in Progress",
-  "Next Stop: Full Stack Developer",
-  "Turning Ideas into Code",
-  "Backend Rookie, Frontend Curious"
+  "Writing Code, Changing Lives"
 ];
 
 let currentPhraseIndex = 0;
