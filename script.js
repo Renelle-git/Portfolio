@@ -308,7 +308,7 @@ const phrases = [
   "Building API's & Breaking Things",
   "From Zero to Full Stack Hero",
   "Debugging Life, One Line at a Time",
-  "Writing Code, Changing Lives"
+  "Writing Code, Changing Lives",
 ];
 
 let currentPhraseIndex = 0;
@@ -344,4 +344,39 @@ function startTypingCycle() {
 // Start the typing animation when page loads
 window.addEventListener("load", () => {
   setTimeout(startTypingCycle, 1000); // Start after 1 second delay
+});
+
+
+
+tailwind.config = {
+  darkMode: "class",
+};
+
+const themeToggle = document.getElementById("theme-toggle");
+const htmlElement = document.documentElement; // Represents the <html> tag
+
+// Check for saved theme preference in local storage on page load
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme === "dark") {
+  htmlElement.classList.add("dark");
+  document.getElementById("sun-icon").classList.remove("hidden");
+  document.getElementById("moon-icon").classList.add("hidden");
+} else {
+  htmlElement.classList.remove("dark");
+  document.getElementById("sun-icon").classList.add("hidden");
+  document.getElementById("moon-icon").classList.remove("hidden");
+}
+
+themeToggle.addEventListener("click", () => {
+  if (htmlElement.classList.contains("dark")) {
+    htmlElement.classList.remove("dark");
+    localStorage.setItem("theme", "light");
+    document.getElementById("sun-icon").classList.add("hidden");
+    document.getElementById("moon-icon").classList.remove("hidden");
+  } else {
+    htmlElement.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+    document.getElementById("sun-icon").classList.remove("hidden");
+    document.getElementById("moon-icon").classList.add("hidden");
+  }
 });
